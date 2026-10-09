@@ -26,10 +26,10 @@ Then visit `http://localhost:8080`.
 
 | Version | Live link | Notes |
 |---|---|---|
-| **V1 — Cinematic Concept** | [Open V1 live preview](https://raw.githack.com/Areeb2016/GTA-VI-Web/main/versions/v1/index.html) | Version-preserved browser preview served directly from the GitHub source. |
-| **V2 — Interactive Experience** | [Open V2 on Netlify](https://gta6-cinematic-concept.netlify.app) | Current production Netlify deployment and recommended version. |
+| **V1 — Cinematic Concept** | [Open V1 on Netlify](https://gta6-cinematic-concept.netlify.app/) | Original cinematic concept deployment. |
+| **V2 — Interactive Experience** | [Open V2 on Netlify](https://gta6phone.netlify.app/) | Current interactive phone/mission-system build and recommended version. |
 
-The live links above are kept separate so older builds remain accessible instead of being overwritten by the newest version.
+Both deployments are kept separate so the original cinematic version remains available while V2 continues as the newer interactive experience.
 
 ## Repository layout
 
