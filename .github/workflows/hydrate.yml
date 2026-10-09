@@ -19,30 +19,44 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Rebuild and verify original archives
+      - name: Rebuild and verify source payloads
         shell: bash
         run: |
           set -euo pipefail
           cat .staging/v1_00.b64 .staging/v1_rest.b64 > /tmp/v1.b64
           cat .staging/v2_00.b64 .staging/v2_01.b64 .staging/v2_02.b64 > /tmp/v2.b64
+          cat .staging/v2_styles_00.b64 .staging/v2_styles_01.b64 .staging/v2_styles_02.b64 > /tmp/v2_styles.b64
           base64 --decode /tmp/v1.b64 > /tmp/v1.zip
-          base64 --decode /tmp/v2.b64 > /tmp/v2.zip
+          base64 --decode /tmp/v2.b64 > /tmp/v2_original.zip
+          base64 --decode /tmp/v2_styles.b64 > /tmp/styles.css
+          echo '52d5fd6f8c336c0519b7513bd4cb68e584c9f9b358647337e32dbca2ca4a6ddb  /tmp/styles.css' | sha256sum --check
           unzip -t /tmp/v1.zip
-          unzip -t /tmp/v2.zip
+          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/README.md >/tmp/v2_README.md
+          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/index.html >/tmp/v2_index.html
+          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/app.js >/tmp/v2_app.js
 
-      - name: Materialize versioned source and archives
+      - name: Materialize versioned source and rebuild archives
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p versions/v1 versions/v2 archives
           unzip -p /tmp/v1.zip gta6_cinematic_site/README.md > versions/v1/README.md
           unzip -p /tmp/v1.zip gta6_cinematic_site/index.html > versions/v1/index.html
-          unzip -p /tmp/v2.zip gta6_cinematic_site_v2/README.md > versions/v2/README.md
-          unzip -p /tmp/v2.zip gta6_cinematic_site_v2/index.html > versions/v2/index.html
-          unzip -p /tmp/v2.zip gta6_cinematic_site_v2/styles.css > versions/v2/styles.css
-          unzip -p /tmp/v2.zip gta6_cinematic_site_v2/app.js > versions/v2/app.js
+          cp /tmp/v2_README.md versions/v2/README.md
+          cp /tmp/v2_index.html versions/v2/index.html
+          cp /tmp/v2_app.js versions/v2/app.js
+          cp /tmp/styles.css versions/v2/styles.css
           cp /tmp/v1.zip archives/GTA6_Cinematic_Fan_Concept_v1.zip
-          cp /tmp/v2.zip archives/GTA6_Cinematic_Fan_Concept_v2.zip
+          rm -rf /tmp/gta6_cinematic_site_v2
+          mkdir -p /tmp/gta6_cinematic_site_v2
+          cp versions/v2/README.md versions/v2/index.html versions/v2/styles.css versions/v2/app.js /tmp/gta6_cinematic_site_v2/
+          (cd /tmp && zip -qr "$GITHUB_WORKSPACE/archives/GTA6_Cinematic_Fan_Concept_v2.zip" gta6_cinematic_site_v2)
+          unzip -t archives/GTA6_Cinematic_Fan_Concept_v1.zip
+          unzip -t archives/GTA6_Cinematic_Fan_Concept_v2.zip
+          test -s versions/v1/index.html
+          test -s versions/v2/index.html
+          test -s versions/v2/styles.css
+          test -s versions/v2/app.js
 
       - name: Commit clean archive
         shell: bash
@@ -50,8 +64,8 @@ jobs:
           set -euo pipefail
           rm -rf .staging
           rm -f .github/workflows/hydrate.yml
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m "Add complete GTA VI Web V1 and V2 source archives"
+          git commit -m 'Add complete GTA VI Web V1 and V2 source archives'
           git push origin HEAD:main
