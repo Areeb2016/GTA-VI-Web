@@ -19,6 +19,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate staged CSS chunks
+        shell: bash
+        run: |
+          set -u
+          sha256sum .staging/v2_styles_00.b64 .staging/v2_styles_01.b64 .staging/v2_styles_02.b64
+          echo '0beab5adfab0975ca89de173cc7e9b8d567e39478d3090678d8c153225a6b9ef  .staging/v2_styles_00.b64' | sha256sum --check
+          echo 'c4095be8c68ee9c44ad3a3ec844536f6ba154a868e942ab1702e21524691bf16  .staging/v2_styles_01.b64' | sha256sum --check
+          echo 'bbeacd63f9aebf6a252c99195fb304c9a072be20b4f9e94f55849d5726fcfbac  .staging/v2_styles_02.b64' | sha256sum --check
+
       - name: Rebuild and verify source payloads
         shell: bash
         run: |
