@@ -19,30 +19,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Validate staged CSS chunks
-        shell: bash
-        run: |
-          set -u
-          sha256sum .staging/v2_styles_00.b64 .staging/v2_styles_01.b64 .staging/v2_styles_02.b64
-          echo '0beab5adfab0975ca89de173cc7e9b8d567e39478d3090678d8c153225a6b9ef  .staging/v2_styles_00.b64' | sha256sum --check
-          echo 'c4095be8c68ee9c44ad3a3ec844536f6ba154a868e942ab1702e21524691bf16  .staging/v2_styles_01.b64' | sha256sum --check
-          echo 'bbeacd63f9aebf6a252c99195fb304c9a072be20b4f9e94f55849d5726fcfbac  .staging/v2_styles_02.b64' | sha256sum --check
-
       - name: Rebuild and verify source payloads
         shell: bash
         run: |
           set -euo pipefail
           cat .staging/v1_00.b64 .staging/v1_rest.b64 > /tmp/v1.b64
           cat .staging/v2_00.b64 .staging/v2_01.b64 .staging/v2_02.b64 > /tmp/v2.b64
-          cat .staging/v2_styles_00.b64 .staging/v2_styles_01.b64 .staging/v2_styles_02.b64 > /tmp/v2_styles.b64
           base64 --decode /tmp/v1.b64 > /tmp/v1.zip
           base64 --decode /tmp/v2.b64 > /tmp/v2_original.zip
-          base64 --decode /tmp/v2_styles.b64 > /tmp/styles.css
+          base64 --decode .staging/v2_styles.css.gz.b64 > /tmp/styles.css.gz
+          echo '9d631553ff79976d2a3573e6d1a3313c01dca1f3d910fbf239e4ed9e641e0899  /tmp/styles.css.gz' | sha256sum --check
+          gzip -dc /tmp/styles.css.gz > /tmp/styles.css
           echo '52d5fd6f8c336c0519b7513bd4cb68e584c9f9b358647337e32dbca2ca4a6ddb  /tmp/styles.css' | sha256sum --check
           unzip -t /tmp/v1.zip
-          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/README.md >/tmp/v2_README.md
-          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/index.html >/tmp/v2_index.html
-          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/app.js >/tmp/v2_app.js
+          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/README.md > /tmp/v2_README.md
+          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/index.html > /tmp/v2_index.html
+          unzip -p /tmp/v2_original.zip gta6_cinematic_site_v2/app.js > /tmp/v2_app.js
+          test -s /tmp/v2_README.md
+          test -s /tmp/v2_index.html
+          test -s /tmp/v2_app.js
 
       - name: Materialize versioned source and rebuild archives
         shell: bash
@@ -62,10 +57,12 @@ jobs:
           (cd /tmp && zip -qr "$GITHUB_WORKSPACE/archives/GTA6_Cinematic_Fan_Concept_v2.zip" gta6_cinematic_site_v2)
           unzip -t archives/GTA6_Cinematic_Fan_Concept_v1.zip
           unzip -t archives/GTA6_Cinematic_Fan_Concept_v2.zip
+          echo '52d5fd6f8c336c0519b7513bd4cb68e584c9f9b358647337e32dbca2ca4a6ddb  versions/v2/styles.css' | sha256sum --check
           test -s versions/v1/index.html
           test -s versions/v2/index.html
-          test -s versions/v2/styles.css
           test -s versions/v2/app.js
+          test -s archives/GTA6_Cinematic_Fan_Concept_v1.zip
+          test -s archives/GTA6_Cinematic_Fan_Concept_v2.zip
 
       - name: Commit clean archive
         shell: bash
