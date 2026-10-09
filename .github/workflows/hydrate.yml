@@ -1,6 +1,7 @@
 name: Hydrate GTA VI site versions
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
