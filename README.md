@@ -22,11 +22,14 @@ python -m http.server 8080
 
 Then visit `http://localhost:8080`.
 
-## Live deployment
+## Live deployments
 
-The latest interactive build has also been deployed to Netlify:
+| Version | Live link | Notes |
+|---|---|---|
+| **V1 — Cinematic Concept** | [Open V1 live preview](https://raw.githack.com/Areeb2016/GTA-VI-Web/main/versions/v1/index.html) | Version-preserved browser preview served directly from the GitHub source. |
+| **V2 — Interactive Experience** | [Open V2 on Netlify](https://gta6-cinematic-concept.netlify.app) | Current production Netlify deployment and recommended version. |
 
-**https://gta6-cinematic-concept.netlify.app**
+The live links above are kept separate so older builds remain accessible instead of being overwritten by the newest version.
 
 ## Repository layout
 
