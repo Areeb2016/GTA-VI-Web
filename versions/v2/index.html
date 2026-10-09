@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sunset">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07070b" />
+  <title>VI // LEONIDA — Interactive Cinematic Fan Experience</title>
+  <meta name="description" content="An unofficial interactive cinematic GTA VI fan concept: dynamic Leonida map, mission planner, in-site phone, procedural radio, heat system, day/night mode and cinematic media." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="boot" id="boot" aria-label="Cinematic intro">
+    <button class="boot-skip" id="bootSkip" type="button">Skip intro ↗</button>
+    <div class="boot-grid"></div>
+    <div class="boot-orb"></div>
+    <div class="boot-copy">
+      <div class="boot-tag">LEONIDA // STATE NETWORK</div>
+      <div class="boot-logo">VI</div>
+      <div class="boot-status"><span id="bootStatus">Waking the coast</span><b id="bootPercent">00%</b></div>
+      <div class="boot-track"><i id="bootBar"></i></div>
+      <p>Unofficial cinematic fan concept. No affiliation with Rockstar Games or Take-Two.</p>
+    </div>
+  </div>
+
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-orbit" id="cursorOrbit" aria-hidden="true"></div>
+  <div class="scroll-progress"><i id="scrollProgress"></i></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#home" aria-label="Back to home" id="brandTrigger">
+      <span class="brand-mark">VI</span>
+      <span><b>LEONIDA</b><small>fan experience</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#story">Story</a><a href="#people">People</a><a href="#world">World</a><a href="#planner">Planner</a><a href="#media">Media</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="soundToggle" type="button" aria-label="Toggle ambient radio" title="Radio (R)"><span>◖</span><b id="soundState">OFF</b></button>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle day and night" title="Day / Night (N)"><span>☼</span><b id="themeState">DAY</b></button>
+      <button class="phone-launch" id="phoneLaunch" type="button">VICE/LINK <kbd>M</kbd></button>
+    </div>
+  </header>
+
+  <aside class="wanted" id="wanted" aria-live="polite">
+    <span>HEAT</span><div class="stars" id="stars" aria-label="Heat level"></div><small id="heatLabel">CLEAN</small>
+  </aside>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-sky"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-road" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero-content">
+        <div class="eyebrow reveal">WELCOME BACK TO THE SUNSHINE STATE</div>
+        <h1 class="reveal"><span>VICE</span><span class="outline">CITY</span><span class="gradient">NEVER SLEEPS.</span></h1>
+        <div class="hero-bottom reveal">
+          <div class="hero-copy">
+            <p>Two lives. One bad break. A state built to look perfect from far away. Explore this interactive fan-made vision of <strong>Leonida</strong> and shape the mood as you go.</p>
+            <div class="cta-row"><a class="btn primary magnetic" href="#world">Explore Leonida <span>↘</span></a><button class="btn glass magnetic" id="randomEventBtn" type="button">Trigger random event ✦</button></div>
+          </div>
+          <div class="hero-data">
+            <article><small>Release</small><strong>19 NOV 2026</strong><span>PS5 · XBOX SERIES X|S</span></article>
+            <article><small>Local time</small><strong id="viceTime">20:46</strong><span id="viceMood">GOLDEN HOUR</span></article>
+          </div>
+        </div>
+      </div>
+      <div class="hero-hud">
+        <span>COAST CAM // 061</span><span id="hudWeather">31° · HUMID</span><span>REC ●</span>
+      </div>
+      <a class="scroll-cue" href="#story"><span>SCROLL TO DRIVE</span><i></i></a>
+    </section>
+
+    <section class="ticker" aria-label="Fan concept notice"><div class="ticker-track"><span>VICE CITY ✦ LEONIDA KEYS ✦ GRASSRIVERS ✦ PORT GELLHORN ✦ AMBIENT RADIO ✦ DYNAMIC HEAT ✦ MISSION PLANNER ✦ FAN-MADE CONCEPT ✦ </span><span aria-hidden="true">VICE CITY ✦ LEONIDA KEYS ✦ GRASSRIVERS ✦ PORT GELLHORN ✦ AMBIENT RADIO ✦ DYNAMIC HEAT ✦ MISSION PLANNER ✦ FAN-MADE CONCEPT ✦ </span></div></section>
+
+    <section class="story section" id="story">
+      <div class="section-stamp reveal"><span>01</span><small>THE STORY</small></div>
+      <div class="story-lead reveal"><p class="supercopy">WHEN THE SUN GOES DOWN, <em>EVERY DECISION GETS LOUDER.</em></p></div>
+      <div class="story-layout">
+        <div class="story-image reveal tilt-card" data-tilt="8"><img src="https://www.rockstargames.com/VI/_next/static/media/Vice_City_03.0nqz~lrqdmlze.jpg?akim=1&imdensity=1&imwidth=3840" alt="Vice City at night" loading="lazy"><div class="photo-caption"><span>VICE CITY // NIGHT SHIFT</span><b>02:13 AM</b></div></div>
+        <div class="story-copy reveal"><h2>ONE SCORE.<br>TOO MANY EYES.</h2><p>Jason and Lucia are at the center of a criminal conspiracy stretching across Leonida. This fan experience turns that tension into interface: plan a fictional score, pick an approach, watch your heat rise and see the rest of the site react.</p><div class="story-facts"><article><b>2</b><span>protagonists</span></article><article><b>4</b><span>interactive districts</span></article><article><b>∞</b><span>bad ideas</span></article></div></div>
+      </div>
+    </section>
+
+    <section class="people section" id="people">
+      <div class="section-head reveal"><div><span class="section-kicker">02 // PEOPLE OF LEONIDA</span><h2>EVERYBODY<br><i>WANTS SOMETHING.</i></h2></div><p>Move your pointer across a portrait or swipe on touch. Each card has its own depth, attitude and quick profile.</p></div>
+      <div class="character-deck" id="characterDeck">
+        <article class="character active tilt-card" data-tilt="10" data-name="Lucia" data-role="Instinct / Resolve" data-quote="Make the move before the room decides for you."><img src="https://www.rockstargames.com/VI/_next/static/media/Lucia_Caminos_01.0a7yqvewctkfp.jpg?akim=1&imdensity=1&imwidth=3840" alt="Lucia"><div class="char-shade"></div><div class="char-copy"><small>01 // LUCIA</small><h3>LUCIA</h3><p>Instinct. Resolve. No patience for cages.</p><button class="mini-btn profile-btn" type="button">Open profile ↗</button></div></article>
+        <article class="character tilt-card" data-tilt="10" data-name="Jason" data-role="Calm / Pressure" data-quote="Keep the engine running and the exits closer."><img src="https://www.rockstargames.com/VI/_next/static/media/Jason_Duval_01.07m377xeb6jhq.jpg?akim=1&imdensity=1&imwidth=3840" alt="Jason"><div class="char-shade"></div><div class="char-copy"><small>02 // JASON</small><h3>JASON</h3><p>Quiet until the plan starts falling apart.</p><button class="mini-btn profile-btn" type="button">Open profile ↗</button></div></article>
+        <article class="character synthetic tilt-card" data-tilt="10" data-name="Leonida" data-role="Sunshine / Static" data-quote="The state is always watching. Usually through a phone."><div class="synthetic-art"><span>305</span><i></i><i></i><i></i></div><div class="char-shade"></div><div class="char-copy"><small>03 // THE STATE</small><h3>LEONIDA</h3><p>Tourist brochure on the front. Fever dream behind it.</p><button class="mini-btn profile-btn" type="button">Open profile ↗</button></div></article>
+      </div>
+      <div class="deck-controls reveal"><button type="button" id="deckPrev">← PREV</button><div><i id="deckProgress"></i></div><button type="button" id="deckNext">NEXT →</button></div>
+    </section>
+
+    <section class="world section" id="world">
+      <div class="world-head reveal"><div><span class="section-kicker">03 // INTERACTIVE STATE MAP</span><h2>CHOOSE<br><i>YOUR TROUBLE.</i></h2></div><div class="world-meta"><span id="worldCoords">25.7617° N / 80.1918° W</span><b id="worldZone">VICE CITY</b></div></div>
+      <div class="map-shell reveal">
+        <div class="map-canvas" id="mapCanvas">
+          <div class="map-water-lines"></div>
+          <svg class="state-shape" viewBox="0 0 760 760" role="img" aria-label="Abstract fan-made map of Leonida">
+            <defs><linearGradient id="landFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffbe65"/><stop offset=".55" stop-color="#ff5fa6"/><stop offset="1" stop-color="#7657ff"/></linearGradient><filter id="softGlow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+            <path class="land" d="M455 42c42 45 52 94 45 139-6 38 15 74 39 108 28 38 51 84 43 129-7 40-35 65-42 106-8 48 3 103-29 141-34 40-93 43-132 13-31-24-48-65-74-93-34-37-80-59-103-105-26-53-13-116 9-168 19-46 47-89 85-122 32-28 51-68 75-105 21-32 49-68 84-43Z" fill="url(#landFill)" opacity=".78"/>
+            <path class="route" id="routeLine" d="M433 580 C 385 525, 445 455, 369 391 S 407 260, 442 170" fill="none"/>
+          </svg>
+          <button class="hotspot active" style="--x:58%;--y:76%" data-zone="vice" aria-label="Vice City"><i></i><span>VICE CITY</span></button>
+          <button class="hotspot" style="--x:66%;--y:89%" data-zone="keys" aria-label="Leonida Keys"><i></i><span>THE KEYS</span></button>
+          <button class="hotspot" style="--x:42%;--y:58%" data-zone="grass" aria-label="Grassrivers"><i></i><span>GRASSRIVERS</span></button>
+          <button class="hotspot" style="--x:56%;--y:25%" data-zone="port" aria-label="Port Gellhorn"><i></i><span>PORT GELLHORN</span></button>
+          <div class="map-scale"><span>0</span><i></i><span>50 MI</span></div>
+        </div>
+        <aside class="zone-card" id="zoneCard">
+          <div class="zone-number" id="zoneNumber">01 / 04</div><small id="zoneType">NEON CAPITAL</small><h3 id="zoneTitle">VICE CITY</h3><p id="zoneText">Glass towers, heat haze, beaches and streets that get stranger after midnight.</p>
+          <div class="zone-stats"><div><span>ENERGY</span><i><b id="energyBar" style="width:94%"></b></i></div><div><span>RISK</span><i><b id="riskBar" style="width:78%"></b></i></div><div><span>ESCAPE</span><i><b id="escapeBar" style="width:63%"></b></i></div></div>
+          <button class="btn primary" id="setRoute" type="button">SET ROUTE <span>→</span></button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="planner section" id="planner">
+      <div class="planner-backdrop"></div>
+      <div class="planner-head reveal"><span class="section-kicker">04 // FICTIONAL MISSION PLANNER</span><h2>MAKE A PLAN.<br><i>BREAK THE PLAN.</i></h2><p>Pick an approach and crew specialty. The projected heat, cut and route update instantly. This is a game-like fan interaction—not an actual gameplay system.</p></div>
+      <div class="planner-grid reveal">
+        <div class="planner-panel">
+          <div class="planner-step"><span>01</span><div><small>APPROACH</small><h3>How are we getting in?</h3></div></div>
+          <div class="choice-grid" id="approachChoices"><button class="choice active" data-approach="Quiet" data-heat="1" data-cut="42" data-time="06:40"><b>QUIET</b><span>Low profile · tight timing</span></button><button class="choice" data-approach="Fast" data-heat="3" data-cut="54" data-time="03:15"><b>FAST</b><span>Cars first · questions later</span></button><button class="choice" data-approach="Chaos" data-heat="5" data-cut="71" data-time="01:50"><b>CHAOS</b><span>Maximum noise · maximum risk</span></button></div>
+          <div class="planner-step second"><span>02</span><div><small>CREW SPECIALTY</small><h3>Who fixes the weak point?</h3></div></div>
+          <div class="crew-row" id="crewChoices"><button class="crew active" data-crew="Driver" data-bonus="8"><i>DR</i><span><b>DRIVER</b><small>+ Escape</small></span></button><button class="crew" data-crew="Hacker" data-bonus="11"><i>HK</i><span><b>HACKER</b><small>+ Control</small></span></button><button class="crew" data-crew="Lookout" data-bonus="6"><i>LK</i><span><b>LOOKOUT</b><small>− Heat</small></span></button></div>
+        </div>
+        <aside class="mission-card" id="missionCard">
+          <div class="mission-top"><span>JOB // SUNSET RUN</span><b id="missionStatus">READY</b></div>
+          <div class="mission-route"><span>VICE CITY</span><i></i><span id="missionDestination">PORT GELLHORN</span></div>
+          <div class="mission-metrics"><article><small>PROJECTED HEAT</small><strong id="missionHeat">★☆☆☆☆</strong></article><article><small>EST. WINDOW</small><strong id="missionTime">06:40</strong></article><article><small>CREW CUT</small><strong><span id="missionCut">42</span>%</strong></article></div>
+          <div class="mission-note"><i></i><p id="missionNote">Quiet entry. Driver on standby. Best odds before the city wakes up.</p></div>
+          <button class="btn danger" id="launchMission" type="button">RUN THE SIMULATION <span>▶</span></button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="media section" id="media">
+      <div class="section-head reveal"><div><span class="section-kicker">05 // CINEMATIC ARCHIVE</span><h2>FREEZE<br><i>THE FEVER.</i></h2></div><p>Click a frame to enter focus mode. Use ← / → to move through the archive without leaving the cinematic viewer.</p></div>
+      <div class="gallery reveal" id="gallery">
+        <button class="frame wide" data-frame="0"><img src="https://www.rockstargames.com/VI/_next/static/media/Vice_City_01.135x56yoeu.6t.jpg?akim=1&imdensity=1&imwidth=3840" alt="Vice City sunset" loading="lazy"><span><small>001</small><b>SUNSET STATE</b></span></button>
+        <button class="frame tall" data-frame="1"><img src="https://www.rockstargames.com/VI/_next/static/media/Lucia_Caminos_02.16n.5umvlu_48.jpg?akim=1&imdensity=1&imwidth=3840" alt="Lucia" loading="lazy"><span><small>002</small><b>LUCIA</b></span></button>
+        <button class="frame" data-frame="2"><img src="https://www.rockstargames.com/VI/_next/static/media/Jason_Duval_02.1486~7_v40cn..jpg?akim=1&imdensity=1&imwidth=3840" alt="Jason" loading="lazy"><span><small>003</small><b>JASON</b></span></button>
+        <button class="frame" data-frame="3"><img src="https://www.rockstargames.com/VI/_next/static/media/Vice_City_03.0nqz~lrqdmlze.jpg?akim=1&imdensity=1&imwidth=3840" alt="Vice City night" loading="lazy"><span><small>004</small><b>AFTER DARK</b></span></button>
+      </div>
+    </section>
+
+    <section class="launch section" id="launch">
+      <div class="launch-shell reveal"><div><span class="section-kicker">06 // LAUNCH PLANNER</span><h2>MARK<br>THE DATE.</h2><p>Grand Theft Auto VI is currently scheduled for November 19, 2026 on PlayStation 5 and Xbox Series X|S. This fan site does not sell the game or collect account/payment information.</p></div><div class="countdown" id="countdown"><article><b id="days">000</b><span>DAYS</span></article><article><b id="hours">00</b><span>HOURS</span></article><article><b id="minutes">00</b><span>MIN</span></article><article><b id="seconds">00</b><span>SEC</span></article></div><a class="btn primary" href="https://www.rockstargames.com/VI" target="_blank" rel="noreferrer">OFFICIAL GTA VI SITE ↗</a></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div><b>VI // LEONIDA</b><p>Unofficial, non-commercial fan design study. Grand Theft Auto, GTA VI, characters and official imagery belong to Rockstar Games / Take-Two. This experience is not affiliated with or endorsed by them.</p></div><div><span>INTERACTION KEYS</span><p><kbd>M</kbd> Phone &nbsp; <kbd>R</kbd> Radio &nbsp; <kbd>N</kbd> Day/Night &nbsp; <kbd>H</kbd> Heat &nbsp; <kbd>ESC</kbd> Close</p></div><a href="#home">BACK TO TOP ↑</a></footer>
+
+  <div class="phone-wrap" id="phoneWrap" aria-hidden="true">
+    <button class="phone-scrim" id="phoneScrim" aria-label="Close phone"></button>
+    <div class="phone" role="dialog" aria-modal="true" aria-label="Vice Link phone">
+      <div class="phone-island"></div><div class="phone-status"><span id="phoneTime">20:46</span><span>◒ 5G ▰</span></div>
+      <div class="phone-home" id="phoneHome">
+        <div class="phone-weather"><small>VICE CITY</small><b id="phoneTemp">31°</b><span id="phoneWeather">Humid · Sunset</span></div>
+        <div class="app-grid"><button class="app" data-app="messages"><i>✉</i><span>Messages</span><em>2</em></button><button class="app" data-app="jobs"><i>◆</i><span>Jobs</span></button><button class="app" data-app="radio"><i>♫</i><span>Radio</span></button><button class="app" data-app="map"><i>⌖</i><span>Map</span></button><button class="app" data-app="camera"><i>◎</i><span>Camera</span></button><button class="app" data-app="settings"><i>⚙</i><span>Settings</span></button></div>
+        <div class="phone-dock"><button data-app="messages">✉</button><button data-app="map">⌖</button><button data-app="radio">♫</button></div>
+      </div>
+      <div class="phone-appview" id="phoneAppView"><div class="appbar"><button id="appBack">‹</button><b id="appTitle">MESSAGES</b><span>•••</span></div><div id="appContent"></div></div>
+      <button class="phone-homebar" id="phoneHomebar" aria-label="Return to phone home"></button>
+    </div>
+  </div>
+
+  <div class="focus-viewer" id="focusViewer" aria-hidden="true"><button class="viewer-close" id="viewerClose" aria-label="Close media viewer">×</button><button class="viewer-nav prev" id="viewerPrev" aria-label="Previous image">←</button><figure><img id="viewerImg" alt=""><figcaption><span id="viewerIndex">001 / 004</span><b id="viewerTitle">SUNSET STATE</b></figcaption></figure><button class="viewer-nav next" id="viewerNext" aria-label="Next image">→</button></div>
+
+  <div class="event-toast" id="eventToast" aria-live="polite"><span id="eventIcon">✦</span><div><small id="eventType">LEONIDA LIVE</small><b id="eventTitle">Random event</b><p id="eventText">Something strange is happening down the coast.</p></div></div>
+  <div class="scanner" id="scanner" aria-hidden="true"><i></i><span>STATE AIR UNIT // SEARCHING</span></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
